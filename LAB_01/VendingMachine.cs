@@ -20,5 +20,12 @@ namespace LAB_01
             MoneyFloat = new Dictionary<int, int>();
             Inventory = new Dictionary<string, int>();  
         }
+
+        // METHOD
+        public string StockItem(string prodName, int prodPrice, string prodCode)
+        {
+            Inventory[$"{prodCode} - {prodName}"] = prodPrice;
+            return $"{prodCode} - {prodName}, has been added.";
+        }
     }
 }
