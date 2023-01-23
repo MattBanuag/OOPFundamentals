@@ -22,10 +22,16 @@ namespace LAB_01
         }
 
         // METHOD
-        public string StockItem(string prodName, int prodPrice, string prodCode)
+        public string StockItem(string Product, int quantity)
         {
-            Inventory[$"{prodCode} - {prodName}"] = prodPrice;
-            return $"{prodCode} - {prodName}, has been added.";
+            Inventory[Product] = quantity;
+            return $"{String.Join(", ", Product)}, added successfully.";
+        }
+
+        public string StockFloat(int moneyDenomination, int quanity)
+        {
+            MoneyFloat[moneyDenomination] = quanity;
+            return String.Join(", ", MoneyFloat);
         }
     }
 }
