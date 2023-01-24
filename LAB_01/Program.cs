@@ -16,6 +16,7 @@ Product G = new Product("Pizza Sub", 6, "G7");
 Product H = new Product("Jar of pickles", 8, "H8");
 
 // PASS PRODUCTS TO 'STOCKITEM' METHOD
+Console.WriteLine("~ SNACKS AVAILABLE: ");
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine(VM.StockItem(A, 13));
 Console.WriteLine(VM.StockItem(B, 7));
@@ -25,6 +26,7 @@ Console.WriteLine(VM.StockItem(E, 5));
 Console.WriteLine(VM.StockItem(F, 3));
 Console.WriteLine(VM.StockItem(G, 8));
 Console.WriteLine(VM.StockItem(H, 2));
-Console.ResetColor();   
+Console.ResetColor();
 
-
+// PASS MONEY TO 'STOCKFLOAT' METHOD
+Console.WriteLine("~ CHANGE AVAILABLE: ");

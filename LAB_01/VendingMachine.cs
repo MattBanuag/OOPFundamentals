@@ -29,17 +29,17 @@ namespace LAB_01
             Inventory = new Dictionary<string, int>();  
         }
 
-        // METHOD
+        // METHODS
         public string StockItem(Product product, int quantity)
         {
             Inventory[product.ProdCode] = quantity;
-            return $"{product.ProdName} added successfully.";
+            return $"{product.ProdCode} - {product.ProdName} - ${product.ProdPrice}";
         }
 
-        public string StockFloat(int moneyDenomination, int quanity)
+        public string StockFloat(int moneyDenomination, int quantity)
         {
-            MoneyFloat[moneyDenomination] = quanity;
-            return String.Join(", ", MoneyFloat);
+            MoneyFloat[moneyDenomination] = quantity;
+            return $"${moneyDenomination}: {quantity} pieces";
         }
 
         /*public string VendItem(string Product, int quantity) 
