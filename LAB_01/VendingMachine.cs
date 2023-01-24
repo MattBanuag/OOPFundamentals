@@ -18,14 +18,7 @@ namespace LAB_01
         public VendingMachine(int serialNumber)
         {
             SerialNumber = serialNumber;
-            MoneyFloat = new Dictionary<int, int>()
-            {
-                { 20, 4 },
-                { 10, 0 },
-                { 5, 2 },
-                { 2, 0 },
-                { 1, 10 }
-        };
+            MoneyFloat = new Dictionary<int, int>();
             Inventory = new Dictionary<string, int>();  
         }
 

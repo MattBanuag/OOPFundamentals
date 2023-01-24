@@ -29,4 +29,11 @@ Console.WriteLine(VM.StockItem(H, 2));
 Console.ResetColor();
 
 // PASS MONEY TO 'STOCKFLOAT' METHOD
-Console.WriteLine("~ CHANGE AVAILABLE: ");
+Console.WriteLine("\n~ CHANGE AVAILABLE: ");
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine(VM.StockFloat(20, 4));
+Console.WriteLine(VM.StockFloat(10, 0));
+Console.WriteLine(VM.StockFloat(5, 2));
+Console.WriteLine(VM.StockFloat(2, 0));
+Console.WriteLine(VM.StockFloat(1, 10));
+Console.ResetColor();
