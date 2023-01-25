@@ -38,93 +38,50 @@ namespace LAB_01
         public void VendItem(string userInput, int moneyInput)
         {
             int change = 0;
-            bool isRunning = true;
             foreach (Product item in Inventory.Keys)
             {
                 if (item.ProdCode == userInput && moneyInput >= item.ProdPrice)
                 {
                     Console.WriteLine($"\n~ FETCHING ITEM {item.ProdName}...");
                     change = moneyInput - item.ProdPrice;
-                    List<string> changeList = new List<string>();
+                    Dictionary<int, int> ChangeReturned = new Dictionary<int, int>();
 
-                    while (change >= 20)
+                    int itemCost = item.ProdPrice;
+                    change = moneyInput - itemCost;
+                    Inventory[item]--;
+
+                    foreach (KeyValuePair<int, int> coins in MoneyFloat)
                     {
-                        if (MoneyFloat[20] == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("~ No change available");
-                            Console.WriteLine("~ Cancelling transaction...");
-                            Console.ResetColor();
-                            isRunning = false;
-                        }
-                        changeList.Add("$20");
-                        change -= 20;
-                        MoneyFloat[20]--;
-                    } while (change >= 10)
-                    {
-                        if (MoneyFloat[10] == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("~ No change available");
-                            Console.WriteLine("~ Cancelling transaction...");
-                            Console.ResetColor();
-                            isRunning = false;
-                        }
-                        changeList.Add("$10");
-                        change -= 10;
-                        MoneyFloat[10]--;
-                    } while (change >= 5)
-                    {
-                        if (MoneyFloat[5] == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("~ No change available");
-                            Console.WriteLine("~ Cancelling transaction...");
-                            Console.ResetColor();
-                            isRunning = false;
-                        }
-                        changeList.Add("$5");
-                        change -= 5;
-                        MoneyFloat[5]--;
-                    } while (change >= 2)
-                    {
-                        if (MoneyFloat[2] == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("~ No change available");
-                            Console.WriteLine("~ Cancelling transaction...");
-                            Console.ResetColor();
-                            isRunning = false;
-                        }
-                        changeList.Add("$2");
-                        change -= 2;
-                        MoneyFloat[2]--;
-                    } while (change >= 1)
-                    {
-                        if (MoneyFloat[1] == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("~ No change available");
-                            Console.WriteLine("~ Cancelling transaction...");
-                            Console.ResetColor();
-                            isRunning = false;
-                        }
-                        changeList.Add("$1");
-                        change -= 1;
-                        MoneyFloat[1]--;
+                        ChangeReturned.Add(coins.Key, 0);
                     }
 
-                    // Display change
-                    if (isRunning)
+                    foreach (KeyValuePair<int, int> pair in MoneyFloat)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write($"~ Your change is: {String.Join(", ", changeList)}");
-                        Console.WriteLine();
-                        Console.WriteLine($"~ Enjoy :)\n");
+                        while (pair.Key <= change && MoneyFloat[pair.Key] > 0 && change > 0)
+                        {
+                            change -= pair.Key;
+                            ChangeReturned[pair.Key]++;
+                            MoneyFloat[pair.Key]--;
+                        }
+                    }
+
+                    if (change == 0)
+                    {
+                        Console.WriteLine("Your change is: ");
+                        foreach (KeyValuePair<int, int> pair in ChangeReturned)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"{pair.Value} ${pair.Key} coins");
+                        }
+                        Console.WriteLine($"\n~ Enjoy :)");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("~ No change available");
+                        Console.WriteLine("~ Cancelling transaction...");
                         Console.ResetColor();
-                        changeList.Clear();
                     }
-                    break;
                 }
             }
         }

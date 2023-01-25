@@ -47,7 +47,15 @@ while (!runningTransaction)
     Console.ResetColor();
     itemChoice = Console.ReadLine().ToUpper();
 
-    VM.VendItem(itemChoice, moneyInput);
+    try
+    {
+        VM.VendItem(itemChoice, moneyInput);
+    } catch(Exception ex)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(ex.Message);
+        Console.ResetColor();
+    }
 }
 
 
