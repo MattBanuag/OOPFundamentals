@@ -17,17 +17,6 @@ namespace ParkArea
         public string LicensePlate
         {
             get { return _licensePlate; }
-            set
-            {
-                if(value.Length >= 7)
-                {
-                    _licensePlate = value;
-                } else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("License plate needs to be at least 7 characters.");
-                }
-            }
         }
         public int ParkingSpot
         {
@@ -49,7 +38,15 @@ namespace ParkArea
         // Constructor
         public Vehicle(string licensePlate) 
         {
-            LicensePlate = licensePlate;
+            if (licensePlate.Length < 7 || licensePlate.Length > 7)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                throw new Exception("License plate needs to be at least 7 characters.");
+            }
+            else
+            {
+                _licensePlate = licensePlate;
+            }
         }    
         
     }
