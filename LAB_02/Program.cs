@@ -31,7 +31,15 @@ CarPark should also have a RemoveVehicle method, that takes a vehicle license, a
 
 */
 
-
+// INITIALIZE CAR PARK
+try
+{
+    CarPark ParkOne = new CarPark(20);
+} catch(Exception ex)
+{
+    Console.WriteLine(ex.Message);
+    Console.ResetColor();
+}
 
 
 

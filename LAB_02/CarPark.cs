@@ -10,7 +10,7 @@ namespace ParkArea
     {
         // Fields
         private HashSet<Vehicle> ParkedCars = new HashSet<Vehicle>();
-        private int _capacity = 5;
+        private int _capacity = 20;
 
         // Park Method
         public void Park(Vehicle vehicle)
@@ -38,6 +38,20 @@ namespace ParkArea
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"~ {vehicle.LicensePlate} has been parked at {vehicle.ParkingSpot}.");
                 Console.ResetColor();
+            }
+        }
+
+        // CarPark Constructor
+        public CarPark(int capacity)
+        {
+            if (capacity <= _capacity)
+            {
+                _capacity = capacity;
+                Console.WriteLine($"Car Park with a capacity of {capacity} has been created.");
+            } else
+            {
+                Console.ForegroundColor = ConsoleColor.Red; 
+                throw new Exception($"~ ERROR: Capacity cannot be greater than {_capacity}.");
             }
         }
     }
