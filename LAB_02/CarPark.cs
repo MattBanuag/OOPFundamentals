@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ParkArea
 {
-    public static class CarPark
+    public class CarPark
     {
         // Fields
-        private static HashSet<Vehicle> ParkedCars = new HashSet<Vehicle>();
-        private static int _capacity = 5;
+        private HashSet<Vehicle> ParkedCars = new HashSet<Vehicle>();
+        private int _capacity = 5;
 
         // Park Method
-        public static void Park(Vehicle vehicle)
+        public void Park(Vehicle vehicle)
         {
             // Checking if there is space in the parking spot
             if(ParkedCars.Count > _capacity)

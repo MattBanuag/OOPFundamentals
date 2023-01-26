@@ -11,43 +11,29 @@ using System.Drawing;
 /// It should prevent a vehicle from parking in more than one spot (if it already has a spot) or if the spots are over capacity.
 /// 
 
+/*
+    
+Create a third class, called ParkingSpot. It should have a string Number field/property, a Vehicle property, and a CarPark property.
+    
+Vehicles should now have a HashSet of ParkingSpots.
+    CarPark should now have a HashSet of ParkingSpots.
+   
+When the program is initialized, the CarPark should initialize, and add to its HashSet of ParkingSpots, the amount matching its capacity, and number them from 1 to Capacity.
+        The ParkingSpot should add the CarPark as its CarPark property.
+    
+CarPark should have a ParkVehicle property, that takes a Vehicle object, searches for the lowest-numbered available spot, and "parks" the car
+        The found ParkingSpot adds the Vehicle to its Vehicle property.
+        The Vehicle will add the ParkingSpot to its ParkingSpots property.
+   
+CarPark should also have a RemoveVehicle method, that takes a vehicle license, and removes that vehicle from all of the spots that it is parked in.
+        It should remove the vehicle from the ParkingSpot's Vehicle property.
+        It should remove the ParkingSpot from the Vehicle's ParkingSpots property.
 
-try
-{
-    Vehicle A = new Vehicle("A0P-C4P");
-    Vehicle B = new Vehicle("S9F-P3D");
-    Vehicle C = new Vehicle("A0P-C4P");
-    Vehicle D = new Vehicle("C0P-P8N");
-    Vehicle E = new Vehicle("Z2Q-V6B");
-    Vehicle F = new Vehicle("G3H-P1S");
-    CarPark.Park(A);
-    CarPark.Park(B);
-    CarPark.Park(C);
-    CarPark.Park(D);
-    CarPark.Park(E);
-    CarPark.Park(F);
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-    Console.ResetColor();
-}
+*/
 
-/*Vehicle A = new Vehicle("AP");
-Vehicle B = new Vehicle("S9F-P3D");
-Vehicle C = new Vehicle("A0P-C4P");
-Vehicle D = new Vehicle("C0P-P8N");
-Vehicle E = new Vehicle("Z2Q-V6B");
-Vehicle F = new Vehicle("G3H-P1S");
-Vehicle G = new Vehicle("P9S-X3S");*/
 
-//CarPark.Park(A);
-/*CarPark.Park(B);
-CarPark.Park(C);
-CarPark.Park(D);
-CarPark.Park(E);
-CarPark.Park(F);*/
-//CarPark.Park(G);
+
+
 
 
 
