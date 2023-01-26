@@ -10,22 +10,46 @@ namespace ParkArea
     {
         // Fields
         private string _licensePlate;
-        private string _parkingSpot;
+        private int _parkingSpot;
+        int capacity = 5;
 
         // Properties
         public string LicensePlate
         {
             get { return _licensePlate; }
+            set
+            {
+                if(value.Length >= 7)
+                {
+                    _licensePlate = value;
+                } else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("License plate needs to be at least 7 characters.");
+                }
+            }
         }
-        public string ParkingSpot
+        public int ParkingSpot
         {
             get { return _parkingSpot; }
+            set
+            {
+                if (value < capacity || value > 0)
+                {
+                    _parkingSpot = value;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Parking spot does not exist");
+                }
+            }
         }
+
         // Constructor
-        public Vehicle(string licensePlate, string parkingSpot) 
+        public Vehicle(string licensePlate) 
         {
-            _licensePlate = licensePlate;
-            _parkingSpot = parkingSpot;
+            LicensePlate = licensePlate;
         }    
         
     }

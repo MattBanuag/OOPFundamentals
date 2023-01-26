@@ -14,7 +14,22 @@ namespace ParkArea
         // Park Method
         public static void Park(Vehicle vehicle)
         {
-
+            int capacity = 5;
+            if(ParkedCars.Count < capacity)
+            {
+                vehicle.ParkingSpot = ParkedCars.Count + 1;
+                ParkedCars.Add(vehicle);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"~ {vehicle.LicensePlate} has been parked at {vehicle.ParkingSpot}.");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"~ Cannot park '{vehicle.LicensePlate}'. The lot is FULL.");
+                Console.ResetColor();
+                return;
+            }
         }
     }
 }
