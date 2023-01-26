@@ -10,13 +10,13 @@ namespace ParkArea
     {
         // Fields
         private static HashSet<Vehicle> ParkedCars = new HashSet<Vehicle>();
+        private static int _capacity = 5;
 
         // Park Method
         public static void Park(Vehicle vehicle)
         {
             // Validating park capacity and parking vehicle
-            int capacity = 5;
-            if (ParkedCars.Count < capacity)
+            if (ParkedCars.Count < _capacity)
             {
                 // Checking if vehicle with the same license plate is already parked
                 foreach (Vehicle car in ParkedCars)

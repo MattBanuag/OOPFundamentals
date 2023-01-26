@@ -11,7 +11,7 @@ namespace ParkArea
         // Fields
         private string _licensePlate;
         private int _parkingSpot;
-        int capacity = 5;
+        private int _capacity = 5;
 
         // Properties
         public string LicensePlate
@@ -34,7 +34,7 @@ namespace ParkArea
             get { return _parkingSpot; }
             set
             {
-                if (value < capacity || value > 0)
+                if (value < _capacity || value > 0)
                 {
                     _parkingSpot = value;
                 }
