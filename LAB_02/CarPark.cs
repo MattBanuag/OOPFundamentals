@@ -14,9 +14,22 @@ namespace ParkArea
         // Park Method
         public static void Park(Vehicle vehicle)
         {
+            // Validating park capacity and parking vehicle
             int capacity = 5;
-            if(ParkedCars.Count < capacity)
+            if (ParkedCars.Count < capacity)
             {
+                // Checking if vehicle with the same license plate is already parked
+                foreach (Vehicle car in ParkedCars)
+                {
+                    if (car.LicensePlate == vehicle.LicensePlate)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"~ Cannot park '{vehicle.LicensePlate}'. This vehicle is already parked in the parkade.");
+                        Console.ResetColor();
+                        return;
+                    }
+                }
+
                 vehicle.ParkingSpot = ParkedCars.Count + 1;
                 ParkedCars.Add(vehicle);
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -28,7 +41,6 @@ namespace ParkArea
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"~ Cannot park '{vehicle.LicensePlate}'. The lot is FULL.");
                 Console.ResetColor();
-                return;
             }
         }
     }
