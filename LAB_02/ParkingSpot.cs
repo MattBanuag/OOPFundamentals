@@ -14,25 +14,12 @@ namespace ParkArea
         private CarPark _carPark;
 
         // PROPERTIES
-        public int SpotNumber
-        {
-            get { return _spotNumber; }
-        }
-
-        public CarPark CarPark
-        {
-            get { return _carPark; }
-        }
-
         public Vehicle Vehicle
         {
             get { return _vehicle; }
         }
 
-        // METHODS
-
         // CONSTRUCTOR
-        // Initialize Parking Spots
         public ParkingSpot(int spotNumber, CarPark carPark, Vehicle vehicle) 
         {
             _spotNumber = spotNumber;

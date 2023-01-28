@@ -9,7 +9,6 @@ try
     CarParkOne.ParkVehicle(1, CarParkOne, CarOne);
     CarParkOne.ParkVehicle(1, CarParkOne, CarTwo);
     DisplayParkedVehicles(CarParkOne);
-    ParkingSpot NewParkingSpot = new ParkingSpot(1, CarParkOne, CarOne);
 
     CarParkOne.RemoveVehicle("Z1L-F6X");
     DisplayParkedVehicles(CarParkOne);
@@ -21,6 +20,7 @@ catch (Exception ex)
 
 void DisplayParkedVehicles(CarPark carPark)
 {
+    Console.WriteLine("\n~ List of parked vehicles: ");
     foreach (ParkingSpot spot in carPark.ParkingSpots)
     {
         Console.WriteLine(spot.Vehicle.LicenseNumber);

@@ -40,7 +40,6 @@ namespace ParkArea
                 }
             }
         }
-        
         public void ParkVehicle(int spotNumber, CarPark carPark, Vehicle vehicle)
         {
             _parkingSpots.Add(new ParkingSpot(spotNumber, carPark, vehicle));
