@@ -8,46 +8,36 @@ namespace ParkArea
 {
     public class Vehicle
     {
-        // Fields
-        private string _licensePlate;
-        private int _parkingSpot;
-        private int _capacity = 5;
+        private string _licenseNumber;
+        private int _spotNumber;
+        private HashSet<ParkingSpot> _parkingSpots = new HashSet<ParkingSpot>();
 
-        // Properties
-        public string LicensePlate
+        public string LicenseNumber
         {
-            get { return _licensePlate; }
-        }
-        public int ParkingSpot
-        {
-            get { return _parkingSpot; }
-            set
-            {
-                if (value < _capacity || value > 0)
-                {
-                    _parkingSpot = value;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Parking spot does not exist");
-                }
-            }
+            get { return _licenseNumber; }
         }
 
-        // Constructor
-        public Vehicle(string licensePlate) 
+        public HashSet<ParkingSpot> ParkingSpots
         {
-            if (licensePlate.Length < 7 || licensePlate.Length > 7)
+            get { return _parkingSpots; }
+        }
+
+        // METHOD
+        private void _setVehicle(string licenseNumber)
+        {
+            if(licenseNumber.Length < 0 || licenseNumber.Length > 7)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                throw new Exception("License plate needs to be at least 7 characters.");
-            }
-            else
+                throw new Exception($"'{licenseNumber}' is not valid");
+            } else
             {
-                _licensePlate = licensePlate;
+                _licenseNumber = licenseNumber;
             }
-        }    
-        
+        }
+
+        // CONSTRUCTOR
+        public Vehicle(string licenseNumber)
+        {
+            _setVehicle(licenseNumber);
+        }
     }
 }

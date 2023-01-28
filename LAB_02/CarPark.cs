@@ -8,51 +8,60 @@ namespace ParkArea
 {
     public class CarPark
     {
-        // Fields
-        private HashSet<Vehicle> ParkedCars = new HashSet<Vehicle>();
+        private int _carParkNumber;
         private int _capacity = 20;
+        private HashSet<ParkingSpot> _parkingSpots = new HashSet<ParkingSpot>();    
 
-        // Park Method
-        public void Park(Vehicle vehicle)
+        // PROPERTIES
+        public HashSet<ParkingSpot> ParkingSpots
         {
-            // Checking if there is space in the parking spot
-            if(ParkedCars.Count > _capacity)
-            {
-                throw new Exception("~ ERROR: Parking lot is full.");
-            } else 
-            {
-                // Checking if vehicle with the same license plate is already parked
-                foreach (Vehicle car in ParkedCars)
-                {
-                    if (car.LicensePlate == vehicle.LicensePlate)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"~ Cannot park '{vehicle.LicensePlate}'. This vehicle is already parked in the parkade.");
-                        Console.ResetColor();
-                        return;
-                    }
-                }
+            get { return _parkingSpots; }
+        }
+        public int CarParkNumber
+        {
+            get { return _carParkNumber; }
+        }
 
-                vehicle.ParkingSpot = ParkedCars.Count + 1;
-                ParkedCars.Add(vehicle);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"~ {vehicle.LicensePlate} has been parked at {vehicle.ParkingSpot}.");
-                Console.ResetColor();
+        // METHODS
+        private void _setCarPark(int carParkNumber, int capacity)
+        {
+            if(capacity > _capacity || capacity < 0)
+            {
+                throw new Exception($"A capacity of {capacity} is not valid. Your CARPARK should only have a MAX of {_capacity}");
+            } else
+            {
+                if (carParkNumber < 0 || carParkNumber > 100)
+                {
+                    throw new Exception($"{carParkNumber} is not a valid number");
+                }
+                else
+                {
+                    _carParkNumber = carParkNumber;
+                }
+            }
+        }
+        
+        public void ParkVehicle(int spotNumber, CarPark carPark, Vehicle vehicle)
+        {
+            _parkingSpots.Add(new ParkingSpot(spotNumber, carPark, vehicle));
+            vehicle.ParkingSpots.Add(new ParkingSpot(spotNumber, carPark, vehicle));
+        } 
+        public void RemoveVehicle(string licenseNumber)
+        {
+            foreach(ParkingSpot parkingSpot in _parkingSpots)
+            {
+                if (parkingSpot.Vehicle.LicenseNumber == licenseNumber)
+                {
+                    _parkingSpots.Remove(parkingSpot);
+                    return;
+                }
             }
         }
 
-        // CarPark Constructor
-        public CarPark(int capacity)
+        // CONSTRUCTOR
+        public CarPark(int carParkNumber, int capacity) 
         {
-            if (capacity <= _capacity)
-            {
-                _capacity = capacity;
-                Console.WriteLine($"Car Park with a capacity of {capacity} has been created.");
-            } else
-            {
-                Console.ForegroundColor = ConsoleColor.Red; 
-                throw new Exception($"~ ERROR: Capacity cannot be greater than {_capacity}.");
-            }
+            _setCarPark(carParkNumber, capacity);
         }
     }
 }
