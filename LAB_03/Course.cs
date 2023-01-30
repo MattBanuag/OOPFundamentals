@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,7 @@ namespace SchoolManagement
 {
     public class Course
     {
-        // COURSE ID
         private int _courseId;
-        // readonly -- only define at start
         public int CourseId { get { return _courseId; } }
         private void _setCourseId(int courseId)
         {
@@ -24,7 +23,6 @@ namespace SchoolManagement
             }
         }
 
-        // TITLE
         private string _title;
         public string Title { get { return _title; } }
         private void _setTitle(string title)
@@ -39,7 +37,6 @@ namespace SchoolManagement
             }
         }
 
-        // CAPACITY
         private int _capacity;
         public int Capacity { get { return _capacity; } }
         private void _setCapacity(int capacity)
@@ -54,41 +51,24 @@ namespace SchoolManagement
             }
         }
 
-        // HASHSET of Students
-        // one course contains many students
-        private HashSet<Student> _students = new HashSet<Student>();
-        // get method exposes entire collection -- make specific methods instead
+        private HashSet<Enrolment> _enrolments = new HashSet<Enrolment>();
 
-        public Student? GetStudentInCourse(int studentId)
+        public void AddEnrolment(Enrolment enrolment)
         {
-            foreach (Student s in _students)
-            {
-                if (s.StudentId == studentId)
-                {
-                    return s;
-                }
-            }
-
-            return null;
+            _enrolments.Add(enrolment);
         }
 
-        public void RemoveStudentFromCourse(Student student)
+        public HashSet<Enrolment> GetEnrolments()
         {
-            _students.Remove(student);
-        }
-        public void AddStudentToCourse(Student student)
-        {
-            if (_students.Count < Capacity)
-            {
-                _students.Add(student);
-            }
-            else
-            {
-                throw new Exception($"Course is at enrolment capacity {this}");
-            }
+            HashSet<Enrolment> setCopy = _enrolments.ToHashSet();
+            return setCopy;
         }
 
-        // CONSTRUCTOR
+        public void RemoveEnrolment(Enrolment enrolment)
+        {
+            _enrolments.Remove(enrolment);
+        }
+
         public Course(int courseId, string title, int capacity)
         {
             _setCourseId(courseId);
